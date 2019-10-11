@@ -21,19 +21,13 @@ class CityListTest {
     void testAdd() {
         CityList cityList = mockCityList();
 
-        assertEquals(1, cityList.countCities());
+        assertEquals(1, cityList.getCities().size());
 
-        cityList.add(new City("Regina", "Saskatchewan"));
+        City city = new City("Regina", "Saskatchewan");
+        cityList.add(city);
 
-        assertEquals(2, cityList.countCities());
-        assertTrue(cityList.hasCity(new City("Regina", "Saskatchewan")));
-    }
-
-    @Test
-    void testHasCity() {
-        CityList cityList = mockCityList();
-
-        assertTrue(cityList.hasCity(mockCity()));
+        assertEquals(2, cityList.getCities().size());
+        assertTrue(cityList.getCities().contains(city));
     }
 
     @Test
@@ -49,25 +43,4 @@ class CityListTest {
         assertEquals(0, mockCity().compareTo(cityList.getCities().get(1)));
     }
 
-    @Test
-    void testDeleteCity() {
-        CityList cityList = mockCityList();
-
-        City city = new City("Victoria", "British Columbia");
-        cityList.add(city);
-
-        assertEquals(2, cityList.countCities());
-
-        cityList.delete(mockCity());
-
-        assertEquals(1, cityList.countCities());
-        assertEquals(0, city.compareTo(cityList.getCities().get(0)));
-    }
-
-    @Test
-    void testCountCities() {
-        CityList cityList = mockCityList();
-
-        assertEquals(1, cityList.countCities());
-    }
 }

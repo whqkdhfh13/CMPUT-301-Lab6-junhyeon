@@ -16,7 +16,7 @@ public class CityList {
      *      This is a candidate city to add
      */
     public void add(City city) {
-        if (hasCity(city)) {
+        if (cities.contains(city)) {
             throw new IllegalArgumentException();
         }
         cities.add(city);
@@ -33,48 +33,4 @@ public class CityList {
         return list;
     }
 
-    /**
-     * This method checks to see if a city already exists in the list
-     * @param city
-     *      City to check
-     * @return
-     *      Return true if the city exists already
-     */
-    public boolean hasCity(City city) {
-        for (City c : cities) {
-            if (c.getCityName().equals(city.getCityName()) &&
-                    c.getProvinceName().equals(city.getProvinceName())) {
-                return true;
-            }
-        }
-
-        return false;
-    }
-
-    /**
-     * Delete the city from the list if it is there
-     * @param city
-     *      Candidate city to delete
-     */
-    public void delete(City city) {
-        if (!hasCity(city)) {
-            throw new IllegalArgumentException();
-        }
-
-        for (City c : cities) {
-            if (c.compareTo(city) == 0){
-                cities.remove(c);
-                break;
-            }
-        }
-    }
-
-    /**
-     * Return the size of the city list
-     * @return
-     *      Size of city list
-     */
-    public int countCities() {
-        return cities.size();
-    }
 }
