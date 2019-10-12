@@ -31,6 +31,18 @@ class CityListTest {
     }
 
     @Test
+    void testAddException() {
+        CityList cityList = mockCityList();
+
+        City city = new City("Yellowknife", "Northwest Territories");
+        cityList.add(city);
+
+        assertThrows(IllegalArgumentException.class, () -> {
+            cityList.add(city);
+        });
+    }
+
+    @Test
     void testGetCities() {
         CityList cityList = mockCityList();
 
